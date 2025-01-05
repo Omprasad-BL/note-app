@@ -27,7 +27,7 @@ const Signup = () => {
       setError("Please enter a password");
       return;
     }
-    setError(' ');
+    setError("");
   };
   return (
     <>
@@ -51,7 +51,10 @@ const Signup = () => {
               className="input-box"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <PasswordInput />
+            <PasswordInput 
+            value={password} 
+              onChange={(e)=>setPassword(e.target.value)}
+            />
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
             <button type="submit" className="btn-primary">
