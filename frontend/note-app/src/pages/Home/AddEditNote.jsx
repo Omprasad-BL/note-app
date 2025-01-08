@@ -20,7 +20,7 @@ const AddEditNote = () => {
         </label>
         <textarea
           type="text"
-          className="text-sm  text-slate-950 outline-none p-2 rounded"
+          className="text-sm bg-slate-50 text-slate-950 outline-none p-2 rounded"
           placeholder="Content"
           rows={10}
         />
@@ -31,6 +31,7 @@ const AddEditNote = () => {
           TAGS
         </label>
       </div>
+      <button className="btn-primary font-medium mt-5 p-3 " onClick={()=>{}}>Add</button>
     </div>
   );
 };
