@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TagInput from "../../components/input/TagInput";
 import { MdClose } from "react-icons/md";
 
-const AddEditNote = () => {
+const AddEditNote = ({noteData,type,onClose}) => {
   const[title,setTitle]=useState("")
   const[content,setContent]=useState("")
   const[tags,setTags]=useState([])
