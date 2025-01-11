@@ -26,27 +26,7 @@ const Home = () => {
             onPinNote={() => {}}
           />
 
-          <NoteCard
-            title="Meeting today"
-            date="6 jab 26"
-            content="meeting on 7th jan  "
-            tags="#meeting  "
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
 
-          <NoteCard
-            title="Meeting today"
-            date="6 jab 26"
-            content="meeting on 7th jan  "
-            tags="#meeting  "
-            isPinned={true}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
         </div>
       </div>
       <button
