@@ -4,13 +4,15 @@ const config = require("./config.json");
 const mongoose = require("mongoose");
 
 mongoose.connect(config.connectionString);
-const User=require('./models/user.model')
+const User = require("./models/user.model");
+const Note = require("./models/note.model");
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
 
 const jwt = require("jsonwebtoken");
-const { authenticateToken } = require("./utilities");
+const { authenticationToken } = require("./utilities");
 
 app.use(express.json());
 app.use(
@@ -27,76 +29,112 @@ app.get("/", (req, res) => {
 
 app.post("/create-account", async (req, res) => {
   const { fullName, email, password } = req.body;
-//   return res.status(200).json("working")
+  //   return res.status(200).json("working")
   if (!fullName)
-    return res.status(404).json({ error: true, message: "Fullname is required" });
+    return res
+      .status(404)
+      .json({ error: true, message: "Fullname is required" });
 
+  if (!email)
+    return res.status(404).json({ error: true, message: "Email is required" });
 
-if (!email)
-  return res.status(404).json({ error: true, message: "Email is required" });
+  if (!password)
+    return res
+      .status(404)
+      .json({ error: true, message: "Password is required" });
 
-if (!password)
-  return res.status(404).json({ error: true, message: "Password is required" });
+  const isUser = await User.findOne({ email: email });
 
-const isUser=await User.findOne({email:email})
+  if (isUser) {
+    return res
+      .status(409)
+      .json({ error: true, message: "Email already exists" });
+  }
 
-if(isUser){
-    return res.status(409).json({ error: true, message: "Email already exists" });
-}
-
-const user = new User({
+  const user = new User({
     fullName,
     email,
-    password
-})
+    password,
+  });
 
-await user.save();
+  await user.save();
 
-const accessToken = jwt.sign({user},process.env.ACCESS_TOKEN_SECRET,{
-    expiresIn: "1h"
-})
+  const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1h",
+  });
 
-return res.status(200).json({
+  return res.status(200).json({
     error: false,
     user,
     accessToken,
-    message: "Registration successfully"
-})
-}
-)
+    message: "Registration successfully",
+  });
+});
 
-app.post('/login',async (req,res) => {
+app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  if(!email){
+  if (!email) {
     return res.status(404).json({ error: true, message: "Email is required" });
   }
 
-  if(!password){
-    return res.status(404).json({ error: true, message: "Password is required" });
+  if (!password) {
+    return res
+      .status(404)
+      .json({ error: true, message: "Password is required" });
   }
 
-  const userInfo=await User.findOne({ email: email})
+  const userInfo = await User.findOne({ email: email });
 
-  if(!userInfo){
-    return res.status(401).json({  message: "User not found" });
+  if (!userInfo) {
+    return res.status(401).json({ message: "User not found" });
   }
 
-  if(userInfo.email == email&& userInfo.password==password){
-    const user={
-      user:userInfo
-    }
-    const accessToken=jwt.sign(user , process.env.ACCESS_TOKEN_SECRET,{
-      expiresIn: "1h"
-    })
-    return res.json({error:false,
-      message:"Login successfull",
+  if (userInfo.email == email && userInfo.password == password) {
+    const user = {
+      user: userInfo,
+    };
+    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: "1h",
+    });
+    return res.json({
+      error: false,
+      message: "Login successfull",
       email,
-      accessToken
-    })
-  }  else{
-    return res.json({error:true,message:"Invalid credentials"});
+      accessToken,
+    });
+  } else {
+    return res.json({ error: true, message: "Invalid credentials" });
   }
-})
+});
+
+app.post("/add-note", authenticationToken, async (req, res) => {
+  const { title, content, tags } = req.body;
+  const { user } = req.user;
+
+  if (!title) {
+    return res.status(404).json({ error: true, message: "Title is required" });
+  }
+
+  if (!content) {
+    return res
+      .status(404)
+      .json({ error: true, message: "Content is required" });
+  }
+
+  try {
+    const note = new Note({
+      title,
+      content,
+      tags: tags || [],
+      userId: user._id,
+    });
+    await note.save();
+    res.json({ error: false, message: "Note added successfully", note });
+    return res.json({ error: false, note, message: "Note added successfully" });
+  } catch (error) {
+    res.status(500).json({ error: true, message: "Internal server error" });
+  }
+});
 app.get("/users", (req, res) => {
   res.json({ name: "Omprasad B L", age: 23, address: "Shivamoga  " });
 });
