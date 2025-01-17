@@ -112,12 +112,12 @@ app.post("/add-note", authenticationToken, async (req, res) => {
   const { user } = req.user;
 
   if (!title) {
-    return res.status(404).json({ error: true, message: "Title is required" });
+    return res.status(400).json({ error: true, message: "Title is required" });
   }
 
   if (!content) {
     return res
-      .status(404)
+      .status(400)
       .json({ error: true, message: "Content is required" });
   }
 
@@ -129,9 +129,10 @@ app.post("/add-note", authenticationToken, async (req, res) => {
       userId: user._id,
     });
     await note.save();
-    res.json({ error: false, message: "Note added successfully", note });
     return res.json({ error: false, note, message: "Note added successfully" });
   } catch (error) {
+    console.log(error);
+    
     res.status(500).json({ error: true, message: "Internal server error" });
   }
 });
