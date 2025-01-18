@@ -142,11 +142,13 @@ app.get("/users", (req, res) => {
 
 app.get("/get-all-notes/:noteid",authenticationToken, async(req, res) => {
   const {user} = req.user;
-
+   
   try {
-    const notes=await Note.findById({userId:user._id})
+    const notes=await Note.findById({userId:user._id}).sort({isPinned:-1})
+    return res.json({error: false, notes, message: "All notes fetched successfully"});
+
   } catch (error) {
-    
+      return res.status(500).json({error:true,message: "Internal Server Error"});
   }
 })
 
