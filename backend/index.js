@@ -140,6 +140,16 @@ app.get("/users", (req, res) => {
   res.json({ name: "Omprasad B L", age: 23, address: "Shivamoga  " });
 });
 
+app.get("/get-all-notes/:noteid",authenticationToken, async(req, res) => {
+  const {user} = req.user;
+
+  try {
+    const notes=await Note.findById({userId:user._id})
+  } catch (error) {
+    
+  }
+})
+
 app.listen(8000, () => {
   console.log("Server is running on port 8000");
 });
