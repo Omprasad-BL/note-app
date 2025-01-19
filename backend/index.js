@@ -140,18 +140,57 @@ app.get("/users", (req, res) => {
   res.json({ name: "Omprasad B L", age: 23, address: "Shivamoga  " });
 });
 
-app.get("/get-all-notes/:noteid",authenticationToken, async(req, res) => {
+app.get("/get-all-notes",authenticationToken, async(req, res) => {
   const {user} = req.user;
    
   try {
-    const notes=await Note.findById({userId:user._id}).sort({isPinned:-1})
+    const notes=await Note.find({userId:user._id}).sort({isPinned:-1})
     return res.json({error: false, notes, message: "All notes fetched successfully"});
 
   } catch (error) {
+    console.log(error.message);
+    
       return res.status(500).json({error:true,message: "Internal Server Error"});
   }
 })
 
+app.put('/edit-note/:noteId', authenticationToken, async (req, res) => {
+  const {user} = req.user;
+  const noteId = req.params.noteId;
+  const {title, content, tags} = req.body;
+  if(!title && !content && !tags){
+    return res.status(400).json({
+      error:true,
+      message: "no chnages provided"
+    })
+  }
+
+  try {
+    const note=await Note.findOne({_id:noteId,userId:user._id})
+    if(!note){
+      return res.status(404).json({error:true,message:"note not found"})
+    }
+  } catch (error) {
+    
+  }
+});
+
+app.delete('/delete-note/:noteId',authenticationToken,async (req, res) => {
+   const {user}=req.user;
+   const noteId = req.params.noteId;
+   try {
+      const note=await Note.findOne({_id:noteId,userId:user._id});
+      if(!note){
+         return res.status(404).json({error:true,message: "Note not found"});
+      }
+
+      await note.deleteOne({_id:noteId,userId:user.id});
+      return res.json({error: false, message: "Note deleted successfully"});
+   } catch (error) {
+      return res.status(500).json({error: true,message: "internal server "})
+
+   }
+})
 app.listen(8000, () => {
   console.log("Server is running on port 8000");
 });
