@@ -140,6 +140,17 @@ app.get("/users", (req, res) => {
   res.json({ name: "Omprasad B L", age: 23, address: "Shivamoga  " });
 });
 
+app.get("/get-user",authenticationToken,async (req, res) => {
+  const {user} = req.user;
+  const isUser= await User.findOne({_id:user._id});
+
+  if(!isUser){
+    return res.sendStatus(401);
+  }
+
+  return res.json({user:isUser, message: " "});
+})
+
 app.get("/get-all-notes",authenticationToken, async(req, res) => {
   const {user} = req.user;
    
