@@ -148,7 +148,11 @@ app.get("/get-user",authenticationToken,async (req, res) => {
     return res.sendStatus(401);
   }
 
-  return res.json({user:isUser, message: " "});
+  return res.json({
+    fullName:isUser.fullName,
+    email:isUser.email,
+    "_id":isUser._id,
+     message: "User fetched Successfully"});
 })
 
 app.get("/get-all-notes",authenticationToken, async(req, res) => {
