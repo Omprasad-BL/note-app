@@ -4,6 +4,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import PasswordInput from '../../components/input/PasswordInput'
 import { validateEmail } from '../../utils/Helper.js'
 import axiosInstance from '../../utils/axiosInstance.js'
+import axios from 'axios'
 const Login = () => {
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -26,13 +27,14 @@ const Login = () => {
 
     // LOGIN  API CALL
      try {
-      const response = await axiosInstance.post("/login",{
+      const response = await axiosInstance
+       axiosInstance.post("/login",{
         email:email,
         password:password 
       })
       if(response.data&& response.data.accessToken){
         localStorage.setItem("token",response.data.accessToken)
-       navigate('/dahsboard')
+        navigate('/dashboard')
       }
      } catch (error) {
       if(error.response && error.response.data && error.response.data.message){
@@ -50,8 +52,8 @@ const Login = () => {
         <div className='w-96 border rounded bg-white px-7 py-10'>
           <form action=" " onSubmit={handleLogin}>
           <h4 className='text-2xl mb-7'>Login</h4>
-          <input type="text" name="" id="" placeholder='Email' className='input-box'/>
-          <PasswordInput/>
+          <input type="text" name="" id="" placeholder='Email' onChange={(e)=>setEmail(e.target.value)} className='input-box'/>
+          <PasswordInput value={password} onChange={(e)=>setPassword(e.target.value)}/>
           {error && <p className='text-red-500 text-5xs pb-1 '>
             {error}
           </p>}
