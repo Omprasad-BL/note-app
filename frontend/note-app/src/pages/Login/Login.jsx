@@ -27,8 +27,7 @@ const Login = () => {
 
     // LOGIN  API CALL
      try {
-      const response = await axiosInstance
-       axiosInstance.post("/login",{
+      const response = await axiosInstance.post("/login",{
         email:email,
         password:password 
       })
@@ -41,6 +40,8 @@ const Login = () => {
         setError(error.response.data.message)
       }
       else{
+        console.log(error);
+
         setError("An unexpected error occurred. Please try again")
       }
      }
