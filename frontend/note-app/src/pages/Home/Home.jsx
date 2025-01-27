@@ -4,6 +4,7 @@ import NoteCard from "../../components/Cards/NoteCard";
 import { MdAdd } from "react-icons/md";
 import AddEditNote from "./AddEditNote";
 import Modal from "react-modal";
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 const Home = () => {
@@ -56,18 +57,19 @@ const getAllNotes=async() => {
       <Navbar  userInfo={userInfo}/>
       <div className="container mx-auto">
         <div className="grid  grid-cols-3  gap-4 mt-8">
+        {allNotes.map((item,index)=>(
           <NoteCard
+          key={item._id}
             title="Meeting today"
-            date="6 jab 26"
-            content="meeting on 7th jan  "
-            tags="#meeting  "
-            isPinned={true}
+            date={moment(item.createdOn).format('Do MMM YYYY')}
+            content={item.content}
+            tags={item.tags}
+            isPinned={item.isPinned}
             onEdit={() => {}}
             onDelete={() => {}}
             onPinNote={() => {}}
           />
-
-
+          ))}
         </div>
       </div>
       <button
