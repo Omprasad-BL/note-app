@@ -1,0 +1,203 @@
+[33mcommit 83592ab16519b12a55c89c74191fe1007df019d7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Tue Jan 28 22:35:47 2025 +0530
+
+    missed commit
+
+[33mcommit faecf80a9e97b939063d5c78cc45a54c8490c1bc[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Wed Jan 29 22:32:34 2025 +0530
+
+    some changes
+
+[33mcommit 0586bafa831a308383cff307b0fe777da2e9cdbd[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Mon Jan 27 23:30:16 2025 +0530
+
+    login page home page redirect issue and logout funcitonalities added
+
+[33mcommit bf7ff8cabefc0d23b72a8bd0366d03cd0313073d[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sun Jan 26 17:05:52 2025 +0530
+
+    get user info connected with fronted and backend
+
+[33mcommit b8baac7e2eaaeff8324eef65f0a9d93fac07dd33[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sat Jan 25 23:43:00 2025 +0530
+
+    Login login for forntend to backend completed
+
+[33mcommit a42ca3ecd8a239f604e8f4dd94adbaa5211013ec[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sat Jan 25 23:22:48 2025 +0530
+
+    erro not resolved trying to clear it
+
+[33mcommit fcfa29d96cae404249bd6da8befc770a728d1793[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Fri Jan 24 23:46:57 2025 +0530
+
+    solving login problem with user details from db
+
+[33mcommit 2003e5d129c9c19d4c77f6f59dfb5ca84d828df3[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Thu Jan 23 23:46:09 2025 +0530
+
+    connecting with backend and frontend for login page
+
+[33mcommit a1a00b0f23b15af67533e77e4986ded53bd6932d[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Wed Jan 22 23:41:55 2025 +0530
+
+    bootstrap included in project
+
+[33mcommit 8c30c97c5e279d35800ebc4b629d616cec0bb053[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Tue Jan 21 23:36:53 2025 +0530
+
+    util folder updated with some modules
+
+[33mcommit 77394e8487323929b914f5b8d3c45c122d52d971[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Tue Jan 21 23:25:35 2025 +0530
+
+    backend completed
+
+[33mcommit 2edee8ca2604c75cb260465472bcfc7af8859666[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Mon Jan 20 23:52:59 2025 +0530
+
+    get user module added
+
+[33mcommit 3fcb1e110a1353bffb063b7fe6dbc5f7f0f9cfc9[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sun Jan 19 19:41:44 2025 +0530
+
+    delete module added
+
+[33mcommit 31ff4c121df06e927afad4d05b0a66c4083fec5b[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sun Jan 19 00:06:53 2025 +0530
+
+    get all notes server side module added
+
+[33mcommit 1282c00ab5d050ea63cfbf9fccbe8c4b9c7c25b9[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sat Jan 18 23:59:19 2025 +0530
+
+    sdvrfkjnefv
+
+[33mcommit 038ee9736b41ae2dae277a3a16eafa53f1560032[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Fri Jan 17 23:26:08 2025 +0530
+
+    bug resloved made data store correctly
+
+[33mcommit 6d1034aecd43a9c7df683d66b81efb59b5235405[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Thu Jan 16 23:22:59 2025 +0530
+
+    Backend note model done and tested with Postman API
+
+[33mcommit 7b7e30e0e1ec6d65a938294faa8596f00673cbf9[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Wed Jan 15 22:57:06 2025 +0530
+
+    server side login router created
+
+[33mcommit 5d37011e9ad76d760837d84faa5675675aa95e98[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Tue Jan 14 23:30:13 2025 +0530
+
+    server and database got new components to handle data
+
+[33mcommit bd319ce9be0c24c84e59fd25a10c183ae2acab93[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Mon Jan 13 23:47:14 2025 +0530
+
+    server side work
+
+[33mcommit 0aed3444134d85ee3902c66a686b97d6a7eb8d7d[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sun Jan 12 18:30:37 2025 +0530
+
+    worked on server side to deal with database
+
+[33mcommit 4393b1563ce1ebfd7ef29dcb950f6610fcd28888[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sat Jan 11 23:29:28 2025 +0530
+
+    some NoteCard feature added
+
+[33mcommit 9cd136be7be7910c49367283e3e53dc15f3de691[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sat Jan 11 00:02:03 2025 +0530
+
+    Hide button fixed
+
+[33mcommit 93275cfd9e4911ea8496ef9769ef0d0a13cade3b[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Fri Jan 10 23:48:38 2025 +0530
+
+    Trying to fix note slide hider function
+
+[33mcommit 776c42b62ac9f52153d7290895b6c954ad11d239[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Thu Jan 9 23:44:29 2025 +0530
+
+    tags adding component has added and modified correctly
+
+[33mcommit 3d61d376a9e0861b5a229e18e7d9cf522607c100[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Wed Jan 8 23:13:54 2025 +0530
+
+    AddNote slide added to create slide
+
+[33mcommit 9140a92c815b5bb3d671c0fe9d1c0d935c9d6316[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Tue Jan 7 23:26:12 2025 +0530
+
+    addEdit note component is added project
+
+[33mcommit 07861abbe197da65ee1d828564bd4b129e5b2b56[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Mon Jan 6 23:36:53 2025 +0530
+
+    Created Card for todo list content in Home page
+
+[33mcommit 0cbc2c0729908b24a49d93b226bbfafb2074ea8d[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sun Jan 5 23:52:27 2025 +0530
+
+    Note app Main ui component cards created
+
+[33mcommit 182a3693ddfcc57b11a792a6f728b065433d77fe[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sun Jan 5 22:05:41 2025 +0530
+
+    corrected signup page mistake
+
+[33mcommit fa78581fc6a4bacc78b526bbbcd163dc599e2c15[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Sat Jan 4 22:25:06 2025 +0530
+
+    Signup Page added
+
+[33mcommit 31a688f28ade32f8746ba574da1d9745ede02968[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Fri Jan 3 17:46:39 2025 +0530
+
+    simple note in ream.me
+
+[33mcommit 21b7fc9a51f746775f4c6415bd790568ad715861[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Fri Jan 3 17:43:58 2025 +0530
+
+    Login Page Created
+
+[33mcommit a23a9927d65449f369cf8ad519373b544fea8a2c[m
+Author: Omprasadbl <omprasadbl@gmail.com>
+Date:   Thu Jan 2 23:28:48 2025 +0530
+
+    first commit
