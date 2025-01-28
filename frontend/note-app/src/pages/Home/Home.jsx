@@ -33,6 +33,7 @@ const Home = () => {
   }
 
 // GET All Notes
+// Finding Big bug in this page still didn't get 
 const getAllNotes=async() => {
   try {
     const response=await axiosInstance.get('/get-all-notes');
