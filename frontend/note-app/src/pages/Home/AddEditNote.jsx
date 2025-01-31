@@ -10,7 +10,7 @@ const AddEditNote = ({ noteData, type,getAllNotes, onClose }) => {
   const [tags, setTags] = useState([]);
   const [error, setError] = useState(null);
 
-  const addNote = async () => {
+  const addNewNote = async () => {
     try {
       const response=await axiosInstance.post("/add-note",{
         title,
