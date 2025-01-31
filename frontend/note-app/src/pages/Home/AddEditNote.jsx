@@ -1,14 +1,36 @@
 import React, { useState } from "react";
 import TagInput from "../../components/input/TagInput";
 import { MdClose } from "react-icons/md";
+import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 
-const AddEditNote = ({ noteData, type, onClose }) => {
+const AddEditNote = ({ noteData, type,getAllNotes, onClose }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState([]);
   const [error, setError] = useState(null);
 
-  const addNote = async () => {};
+  const addNote = async () => {
+    try {
+      const response=await axiosInstance.post("/add-note",{
+        title,
+        content,
+        tags
+      })
+
+      if(response.data&& response.data.notes){
+        getAllNotes()
+        onClose()
+      }
+    } catch (error) {
+      if(error.response && 
+        error.response.data &&
+        error.response.data.message
+      ){
+        setError(error.response.data.message)
+      }
+    }
+  };
   const editNote = async () => {};
   const handleAddNote = () => {
     if (!title) {
