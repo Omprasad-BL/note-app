@@ -32,7 +32,7 @@ const AddEditNote = ({ noteData, type,getAllNotes, onClose }) => {
     }
   };
   const editNote = async () => {};
-  const handleAddNote = () => {
+  const handleAddNote = async () => {
     if (!title) {
       setError("Title is required");
 

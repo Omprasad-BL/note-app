@@ -60,7 +60,7 @@ const Home = () => {
           {allNotes.map((item,index)=>(
           <NoteCard
           key={item._id}
-            title="Meeting today"
+            title={item.title}
             date={moment(item.createdOn).format('Do MMM YYYY')}
             content={item.content}
             tags={item.tags}
