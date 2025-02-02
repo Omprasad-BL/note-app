@@ -17,7 +17,7 @@ const NoteCard = ({
       <div className="flex items-center justify-between">
         <div>
           <h6 className="text-sm font-medium ">{title}</h6>
-          <span className="text-xs text-slate-500">{moment(date).format('Do MMM YYYY')}</span>
+          <span className="text-xs text-slate-500">{date}</span>
         </div>
         <MdOutlinePushPin className={`icon-btn ${isPinned}?text-primary:text-slate-300`} onclick={onPinNote}  />
       </div>
