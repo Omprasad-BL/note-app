@@ -4,21 +4,20 @@ import { MdClose } from "react-icons/md";
 import axios from "axios";
 import axiosInstance from "../../utils/axiosInstance";
 
-const AddEditNote = ({ noteData, type,getAllNotes, onClose }) => {
+const AddEditNote = ({ type,noteData, onClose ,getAllNotes }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState([]);
   const [error, setError] = useState(null);
 
-  const addNewNote = async () => {
+  const addNewNote = async () => {    
     try {
       const response=await axiosInstance.post("/add-note",{
         title,
         content,
         tags
-      })
-
-      if(response.data&& response.data.notes){
+      })            
+      if(response.data&& response.data.note){        
         getAllNotes()
         onClose()
       }
@@ -65,7 +64,7 @@ const AddEditNote = ({ noteData, type,getAllNotes, onClose }) => {
         <input
           type="text"
           className="text-2xl text-slate-950 outline-none"
-          placeholder="Go To Gym At 5"
+          placeholder="Enter Title "
           value={title}
           onChange={({ target }) => setTitle(target.value)}
         />
@@ -78,7 +77,7 @@ const AddEditNote = ({ noteData, type,getAllNotes, onClose }) => {
         <textarea
           type="text"
           className="text-sm bg-slate-50 text-slate-950 outline-none p-2 rounded"
-          placeholder="Content"
+          placeholder="Enter Content"
           rows={10}
           value={content}
           onChange={({ target }) => setContent(target.value)}

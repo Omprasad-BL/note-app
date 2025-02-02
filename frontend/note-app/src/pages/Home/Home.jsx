@@ -39,7 +39,6 @@ const Home = () => {
       const response = await axiosInstance.get("/get-all-notes");
       if (response.data && response.data.notes) {
         setAllNotes(response.data.notes);
-        console.log(allNotes);
       }
     } catch (error) {
       console.log("unexpected error occurred:  PLease try Again");
@@ -56,7 +55,7 @@ const Home = () => {
     <>
       <Navbar userInfo={userInfo} />
       <div className="container mx-auto">
-        <div className="grid  grid-cols-3  gap-4 mt-8">
+        <div className="grid  grid-cols-3  gap-4 mt-8 mx-3">
           {allNotes.map((item,index)=>(
           <NoteCard
           key={item._id}
