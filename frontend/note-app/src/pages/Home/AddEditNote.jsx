@@ -30,7 +30,29 @@ const AddEditNote = ({ type,noteData, onClose ,getAllNotes }) => {
       }
     }
   };
-  const editNote = async () => {};
+  
+  const editNote = async () => {
+    const noteId=noteData._id;
+    try {
+      const response = await axiosInstance.put(`/edit-note/${noteId}`,{
+        title,
+        content,
+        tags
+      });
+      
+      if(response.data&& response.data.note){
+        getAllNotes()
+        onClose() 
+      }
+    } catch (error) {
+      if(error.response&&
+        error.response.data &&
+        error.response.data.message
+      ){
+        setError(error.response.data.message)
+      }
+    }
+  };
   const handleAddNote = async () => {
     if (!title) {
       setError("Title is required");
@@ -95,7 +117,7 @@ const AddEditNote = ({ type,noteData, onClose ,getAllNotes }) => {
         className="btn-primary font-medium mt-5 p-3 "
         onClick={handleAddNote}
       >
-        Add
+        {type==="edit"?"UPDATE":"ADD"}
       </button>
     </div>
   );
