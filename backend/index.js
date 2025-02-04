@@ -181,7 +181,7 @@ app.put('/edit-note/:noteId', authenticationToken, async (req, res) => {
   }
 
   try {
-    const note=await Note.findOne({_id:noteId,userId:user._id})
+    const note=await Note.findOneAndUpdate({_id:noteId,userId:user._id})
     if(!note){
       return res.status(404).json({error:true,message:"note not found"})
     }
