@@ -30,22 +30,21 @@ const AddEditNote = ({ type,noteData, onClose ,getAllNotes }) => {
       }
     }
   };
-  
+  // const response = await axiosInstance.put(`/edit-note/${noteId}`
   const editNote = async () => {
     const noteId=noteData._id;
     try {
-      const response = await axiosInstance.put(`/edit-note/${noteId}`,{
+      const response=await axiosInstance.post(`/edit-note/${noteId}`,{
         title,
         content,
         tags
-      });
-      
-      if(response.data&& response.data.note){
+      })            
+      if(response.data&& response.data.note){        
         getAllNotes()
-        onClose() 
+        onClose()
       }
     } catch (error) {
-      if(error.response&&
+      if(error.response && 
         error.response.data &&
         error.response.data.message
       ){
