@@ -181,12 +181,18 @@ app.put('/edit-note/:noteId', authenticationToken, async (req, res) => {
   }
 
   try {
-    const note=await Note.findOneAndUpdate({_id:noteId,userId:user._id})
+    const note=await Note.findOne({_id:noteId,userId:user._id})
     if(!note){
       return res.status(404).json({error:true,message:"note not found"})
     }
+    if(note) note.title=title
+    if(content) note.content=content
+    if(tags) note.tags=tags
+    // if(isPinned) note.isPinned=isPinned  
+    await note.save();
+    return res.json({error:false,message: "Note updated successfully",note:note})
   } catch (error) {
-    
+    return res.status(500).json({error:error,message: "Internal Server Error"})
   }
 });
 

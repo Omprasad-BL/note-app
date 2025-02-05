@@ -32,14 +32,16 @@ const AddEditNote = ({ type,noteData, onClose ,getAllNotes }) => {
   };
   // const response = await axiosInstance.put(`/edit-note/${noteId}`
   const editNote = async () => {
-    const noteId=noteData._id;    
+    const noteId=noteData._id;   
     try {
-      const response=await axiosInstance.put(`/edit-note/${noteId}`,{
+      const response=await axiosInstance.put("/edit-note/"+noteId,{
         title,
         content,
-        tags
-      })                  
-      if(response.data&& response.data.note){  
+        tags,
+      })   
+      console.log(response);
+               
+      if(response.data&& response.data.note){ 
         getAllNotes()
         onClose()
       }
@@ -51,7 +53,8 @@ const AddEditNote = ({ type,noteData, onClose ,getAllNotes }) => {
         setError(error.response.data.message)
       }
     }
-  };
+  }
+
   const handleAddNote = async () => {
     if (!title) {
       setError("Title is required");

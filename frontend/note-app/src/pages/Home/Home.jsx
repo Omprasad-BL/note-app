@@ -18,7 +18,7 @@ const Home = () => {
   });
 
   const handleEdit=async(noteDetails) => {
-      setOpenAddEditModal({isShown: true,data: noteDetails,type:"edit"});
+      setOpenAddEditModal({isShown: true,data: noteDetails,type:"edit"});z
   }
   // GET USER_INFO
   const getUserInfo = async () => {
