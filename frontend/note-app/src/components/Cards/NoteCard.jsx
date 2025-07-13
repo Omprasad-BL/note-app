@@ -19,7 +19,8 @@ const NoteCard = ({
           <h6 className="text-sm font-medium ">{title}</h6>
           <span className="text-xs text-slate-500">{date}</span>
         </div>
-        <MdOutlinePushPin className={`icon-btn ${isPinned}?text-primary:text-slate-300`} onclick={onPinNote}  />
+        <MdOutlinePushPin className={`icon-btn ${isPinned ? 'text-primary' : 'text-slate-300'}`}  onClick={onPinNote}  />
+        {/* className={`icon-btn ${isPinned}?text-primary:text-slate-300`} */}
       </div>
 
       <p className="text-xs text-slate-600 mt-2"> {content?.slice(0, 60)}</p>

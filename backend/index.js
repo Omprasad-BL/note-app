@@ -172,7 +172,7 @@ app.get("/get-all-notes",authenticationToken, async(req, res) => {
 app.put('/edit-note/:noteId', authenticationToken, async (req, res) => {
   const {user} = req.user;
   const noteId = req.params.noteId;
-  const {title, content, tags} = req.body;
+  const {title, content, tags,isPinned} = req.body;
   if(!title && !content && !tags){
     return res.status(400).json({
       error:true,
@@ -188,7 +188,7 @@ app.put('/edit-note/:noteId', authenticationToken, async (req, res) => {
     if(note) note.title=title
     if(content) note.content=content
     if(tags) note.tags=tags
-    // if(isPinned) note.isPinned=isPinned  
+    if(isPinned) note.isPinned=isPinned
     await note.save();
     return res.json({error:false,message: "Note updated successfully",note:note})
   } catch (error) {
@@ -211,6 +211,106 @@ app.delete('/delete-note/:noteId',authenticationToken,async (req, res) => {
       return res.status(500).json({error: true,message: "internal server "})
 
    }
+})
+
+
+// app.put('/update-note-pinned/:noteId', authenticationToken, async (req, res) => {
+//   const {user} = req.user;
+//   const noteId = req.params.noteId;
+//   const {isPinned} = req.body;
+//   if(!isPinned){
+//     return res.status(400).json({
+//       error:true,
+//       message: "no changes provided"
+//     })
+//   }
+
+//   try {
+//     const note=await Note.findOne({_id:noteId,userId:user._id})
+//     if(!note){
+//       return res.status(404).json({error:true,message:"note not found"})
+//     }
+//     // if(isPinned) 
+//       note.isPinned=isPinned  
+//     await note.save();
+//     return res.json({error:false,message: "Note updated successfully",note:note})
+//   } catch (error) {
+//     return res.status(500).json({error:error,message: "Internal Server Error"})
+//   }
+// });
+
+
+app.put('/update-note-pinned/:noteId', authenticationToken, async (req, res) => {
+  const { user } = req.user;
+  const noteId = req.params.noteId;
+  const { isPinned } = req.body;
+
+  // Check if isPinned was provided at all
+  if (typeof isPinned === "undefined") {
+    return res.status(400).json({
+      error: true,
+      message: "No isPinned value provided"
+    });
+  }
+
+  try {
+    const note = await Note.findOne({ _id: noteId, userId: user._id });
+    if (!note) {
+      return res.status(404).json({ error: true, message: "Note not found" });
+    }
+
+    // Set the new pin state
+    note.isPinned = isPinned;
+    await note.save();
+    
+    return res.json({
+      error: false,
+      message: isPinned
+        ? "Note pinned successfully"
+        : "Note unpinned successfully",
+      note: note
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: true,
+      message: "Internal Server Error",
+      details: error.message
+    });
+  }
+});
+
+app.get("/search-notes/",authenticationToken,async(req,res)=>{
+  const {user}=req.user;
+  const {query}=req.query;
+
+  if(!query){
+    return res.status(400).json({error:true,message:"Search query is required "})
+  }
+  try {
+    const matchingNotes=await Note.find({
+      userId:user._id,
+      $or:[
+        {
+          title:{$regex:new RegExp(query,"i")}
+        },
+        {
+          content:{$regex:new RegExp(query,"i")}
+        }
+      ],
+    })
+
+    return res.json({
+      error:false,
+      notes:matchingNotes,
+      message:"Notes matching the search query retrieved successfully "
+    })
+    
+  } catch (error) {
+    return res.status(500).json({
+      error:true,
+      message:"Internal server error"
+    })
+  }
 })
 app.listen(8000, () => {
   console.log("Server is running on port 8000");
